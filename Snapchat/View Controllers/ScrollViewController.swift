@@ -31,6 +31,7 @@ import UIKit
 protocol ScrollViewControllerDelegate {
     var viewControllers: [UIViewController?] { get }
     var initialViewController: UIViewController { get }
+    func scrollViewDidScroll()
 }
 
 class ScrollViewController: UIViewController {
@@ -62,6 +63,21 @@ class ScrollViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewControllers = delegate?.viewControllers
+        
+        // Add all of the views to the scroll view
+        for (index, controller) in viewControllers.enumerated() {
+            guard let controller = controller else { continue }
+            addChild(controller)
+            controller.view.frame = frame(for: index)
+            scrollView.addSubview(controller.view)
+            controller.didMove(toParent: self)
+        }
+        
+        scrollView.contentSize = CGSize(width: pageSize.width * CGFloat(viewControllers.count), height: pageSize.height)
+        if let controller = delegate?.initialViewController {
+            setController(to: controller, animated: false)
+        }
     }
 }
 
@@ -82,5 +98,27 @@ fileprivate extension ScrollViewController {
 }
 
 // MARK: - Scroll View Delegate
-extension ScrollViewController: UIScrollViewDelegate { }
+extension ScrollViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll()
+    }
+}
 
+extension ScrollViewController {
+    public func setController(to controller: UIViewController, animated: Bool) {
+        guard let index = indexFor(controller: controller) else { return }
+        let contentOffset = CGPoint(x: pageSize.width * CGFloat(index), y: 0)
+        scrollView.setContentOffset(contentOffset, animated: animated)
+    }
+    
+    public func isControllerVisible(_ controller: UIViewController?) -> Bool {
+        guard controller != nil else { return false }
+        for i in 0..<viewControllers.count {
+            if viewControllers[i] == controller {
+                let controllerFrame = frame(for: i)
+                return controllerFrame.intersects(scrollView.bounds)
+            }
+        }
+        return false
+    }
+}

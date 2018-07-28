@@ -60,10 +60,12 @@ class MainViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
         if let controller = segue.destination as? CameraViewController {
             cameraViewController = controller
         } else if let controller = segue.destination as? ScrollViewController {
             scrollViewController = controller
+            scrollViewController.delegate = self
         }
     }
 }
@@ -72,15 +74,42 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     @IBAction func handleChatIconTap(_ sender: UITapGestureRecognizer) {
-        print("Chat!")
+        scrollViewController.setController(to: chatViewController, animated: true)
     }
     
     @IBAction func handleDiscoverIconTap(_ sender: UITapGestureRecognizer) {
-        print("Discover!")
+        scrollViewController.setController(to: discoverViewController, animated: true)
     }
     
     @IBAction func handleCameraButton(_ sender: UITapGestureRecognizer) {
-        print("Snap, snap!")
+        scrollViewController.setController(to: lensViewController, animated: true)
+    }
+}
+
+extension MainViewController: ScrollViewControllerDelegate {
+    var viewControllers: [UIViewController?] {
+        return [chatViewController, lensViewController, discoverViewController]
+    }
+    
+    var initialViewController: UIViewController {
+        return lensViewController
+    }
+    
+    func scrollViewDidScroll() {
+        // interactive interpolation and normalization calculations (look this up for clearer understanding
+        let min: CGFloat = 0
+        let max: CGFloat = scrollViewController.pageSize.width
+        let x = scrollViewController.scrollView.contentOffset.x
+        let result = ((x - min) / (max - min)) - 1
+        
+        var controller: UIViewController?
+        if scrollViewController.isControllerVisible(chatViewController) {
+            controller = chatViewController
+        } else if scrollViewController.isControllerVisible(discoverViewController) {
+            controller = discoverViewController
+        }
+        
+        navigationView.animate(to: controller, percent: result)
     }
 }
 

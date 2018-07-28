@@ -29,41 +29,94 @@
 import UIKit
 
 class LensViewController: UIViewController {
-  @IBOutlet weak var faceImage: UIImageView!
-  @IBOutlet weak var lensCollectionView: UICollectionView!
-  
-  private lazy var lensFiltersImages: [UIImage] = {
-    var images: [UIImage] = []
-    for i in 0...19 {
-      guard let image = UIImage(named: "face\(i)") else { break }
-      images.append(image)
-    }
-    return images
-  }()
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    @IBOutlet weak var faceImage: UIImageView!
+    @IBOutlet weak var lensCollectionView: UICollectionView!
     
-    lensCollectionView.delegate = self
-    lensCollectionView.dataSource = self
-    lensCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
-    lensCollectionView.register(LensCircleCell.self, forCellWithReuseIdentifier: LensCircleCell.identifier)
-  }
+    private lazy var lensFiltersImages: [UIImage] = {
+        var images: [UIImage] = []
+        for i in 0...19 {
+            guard let image = UIImage(named: "face\(i)") else { break }
+            images.append(image)
+        }
+        return images
+    }()
+    
+    var firstLoad = true
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        lensCollectionView.delegate = self
+        lensCollectionView.dataSource = self
+        lensCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+        lensCollectionView.register(LensCircleCell.self, forCellWithReuseIdentifier: LensCircleCell.identifier)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if !firstLoad {
+            return
+        }
+        firstLoad = true
+        super.viewDidLayoutSubviews()
+        let middleIndexPath = IndexPath(item: lensFiltersImages.count/2, section: 0)
+        selectCell(for: middleIndexPath, animated: false)
+    }
+    
+    fileprivate func selectCell(for indexPath: IndexPath, animated: Bool) {
+        lensCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: animated)
+        faceImage.image = lensFiltersImages[indexPath.row]
+    }
+    
 }
 
 // MARK: UICollectionViewDelegate
 extension LensViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 0
-  }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return lensFiltersImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectCell(for: indexPath, animated: true)
+    }
 }
 
 // MARK: UICollectionViewDataSource
 extension LensViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return UICollectionViewCell()
-  }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LensCircleCell.identifier, for: indexPath) as? LensCircleCell else { fatalError() }
+        cell.image = lensFiltersImages[indexPath.row]
+        return cell
+    }
+}
+
+extension LensViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let side = lensCollectionView.frame.height * 0.9
+        return CGSize(width: side, height: side)
+    }
 }
 
 // MARK: UIScrollViewDelegate
-extension LensViewController: UIScrollViewDelegate { }
+extension LensViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let bounds = lensCollectionView.bounds
+        
+        // calc the center of the colelction
+        let xPos = bounds.origin.x + bounds.size.width / 2.0
+        let yPos = bounds.size.height / 2.0
+        let xyPoint = CGPoint(x: xPos, y: yPos)
+        
+        guard let indexPath = lensCollectionView.indexPathForItem(at: xyPoint) else { return }
+        selectCell(for: indexPath, animated: true)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollViewDidEndDecelerating(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        scrollViewDidEndDecelerating(scrollView)
+    }
+}

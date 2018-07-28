@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R0U-jM-XWU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R0U-jM-XWU">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,31 +19,31 @@
                         <viewControllerLayoutGuide type="bottom" id="Nef-Hc-wRr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6op-6y-ebd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2EI-tK-wyH" userLabel="Camera Container">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <connections>
                                     <segue destination="XHr-Y2-gFl" kind="embed" id="Rhn-25-MxA"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="835-ch-9k3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="Background Color View"/>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ye3-zo-fIT" userLabel="Scroller Container">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <connections>
                                     <segue destination="c4y-VH-0th" kind="embed" id="Yvd-3z-x0e"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqH-dm-H1t" customClass="NavigationView" customModule="Snapchat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-fs-akc">
-                                        <rect key="frame" x="259.5" y="448" width="80" height="80"/>
+                                        <rect key="frame" x="147.5" y="515" width="80" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraicon" translatesAutoresizingMaskIntoConstraints="NO" id="YbD-yu-62r">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -78,7 +79,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cY-9W-KTT">
-                                        <rect key="frame" x="40.5" y="522" width="44" height="44"/>
+                                        <rect key="frame" x="17" y="589" width="44" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chaticon" translatesAutoresizingMaskIntoConstraints="NO" id="hEP-GC-mHz">
                                                 <rect key="frame" x="7" y="14" width="30" height="30"/>
@@ -113,7 +114,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxF-c9-ezd" userLabel="Discover Icon View">
-                                        <rect key="frame" x="515" y="522" width="44" height="44"/>
+                                        <rect key="frame" x="313.5" y="589" width="44" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="discovericon" translatesAutoresizingMaskIntoConstraints="NO" id="IXm-1y-n2m" userLabel="Discover Icon Gray View">
                                                 <rect key="frame" x="7" y="14" width="30" height="30"/>
@@ -147,7 +148,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5n-2g-PSp">
-                                        <rect key="frame" x="277.5" y="586" width="46" height="4"/>
+                                        <rect key="frame" x="164.5" y="653" width="46" height="4"/>
                                         <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <accessibility key="accessibilityConfiguration" label="Controller Indicator"/>
                                         <constraints>
@@ -262,25 +263,25 @@
                         <viewControllerLayoutGuide type="bottom" id="HJF-lD-BME"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kzj-WM-U29">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmG-6I-2oM">
-                                <rect key="frame" x="0.0" y="80" width="600" height="540"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="607"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="di4-G6-4a2">
-                                <rect key="frame" x="221" y="289.5" width="158" height="21"/>
+                                <rect key="frame" x="108.5" y="323" width="158" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dhm-Ms-n5s">
-                                <rect key="frame" x="40" y="150" width="520" height="300"/>
+                                <rect key="frame" x="36" y="183.5" width="303" height="333.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-NU-K7f">
-                                <rect key="frame" x="221.5" y="100" width="157.5" height="21"/>
+                                <rect key="frame" x="109" y="100" width="157.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -322,22 +323,22 @@
                         <viewControllerLayoutGuide type="bottom" id="5bR-8b-LrN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XKY-aB-S5Z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THE-n5-FVN">
-                                <rect key="frame" x="0.0" y="100" width="600" height="348"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="415"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face0" translatesAutoresizingMaskIntoConstraints="NO" id="QzB-aV-BYd">
-                                <rect key="frame" x="175" y="149" width="250" height="250"/>
+                                <rect key="frame" x="62.5" y="182.5" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="OQg-uX-gpf"/>
                                     <constraint firstAttribute="height" constant="250" id="WZf-hp-V1e"/>
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DpV-5w-x4g">
-                                <rect key="frame" x="0.0" y="448" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="515" width="375" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Xax-ad-0S5"/>
@@ -354,6 +355,10 @@
                                         <size key="customSize" width="50" height="50"/>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="GgM-ng-gVH" id="3if-EN-c8U"/>
+                                    <outlet property="delegate" destination="GgM-ng-gVH" id="5FZ-ho-eCm"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -390,15 +395,15 @@
                         <viewControllerLayoutGuide type="bottom" id="0y4-Ay-mpH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Un-KQ-luS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWc-hW-Xsd">
-                                <rect key="frame" x="0.0" y="80" width="600" height="540"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="607"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9R-qz-0bU">
-                                <rect key="frame" x="206" y="100" width="188" height="21"/>
+                                <rect key="frame" x="93.5" y="100" width="188" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -451,13 +456,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8G-ru-hCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-386.39999999999998" y="851.42428785607206"/>
+            <point key="canvasLocation" x="-387" y="980"/>
         </scene>
     </scenes>
     <resources>
         <image name="cameraicon" width="80" height="80"/>
         <image name="chaticon" width="32" height="36"/>
         <image name="discovericon" width="32" height="31"/>
-        <image name="face0" width="170" height="170"/>
+        <image name="face0" width="510" height="510"/>
     </resources>
 </document>
